@@ -1,0 +1,121 @@
+% outer style file for ita scheme
+% by Bjoern Malte Schaefer, ITA/Heidelberg
+% heavily modified by Jean-Claude Waizmann, ITA/Heidelberg
+% Edited by Tim M. Tugendhat, ZAH/ARI, 19/10/2015
+% variation on the progressbar theme by Sylvain Bouveret <sylvain[dot]bouveret[aT]cert[DoT]fr>
+% based on LaTeX beamer by by Till Tantau <tantau@users.sourceforge.net>
+
+\ProvidesPackage{beamerouterthemeita}[2007/06/21]
+\RequirePackage{tikz}
+\makeatletter
+
+% Some computations dedicated to the progressbar...
+\newdimen\progressbar@currentbarlength
+\newdimen\progressbar@framenumberrectangle
+\newdimen\progressbar@titlerectangle
+\newdimen\progressbar@authorrectangle
+\newdimen\progressbar@leftbar
+
+\newcount\progressbar@tmpresult
+\newcount\progressbar@numer
+\newcount\progressbar@denom
+\newcount\progressbar@barlength
+
+\progressbar@framenumberrectangle=\paperwidth
+\progressbar@titlerectangle=\paperwidth
+\progressbar@authorrectangle=0pt
+
+\advance\progressbar@framenumberrectangle by -0.9cm
+\advance\progressbar@titlerectangle by -1.1cm
+\advance\progressbar@authorrectangle by 0.2cm
+
+\progressbar@barlength=115 % (in millimeters)
+\progressbar@leftbar=\progressbar@titlerectangle
+\advance\progressbar@leftbar by -\progressbar@barlength mm
+
+\def\insertprogressbar{
+  \ifnum\inserttotalframenumber=1\else
+    \progressbar@numer=\insertframenumber
+    \advance\progressbar@numer by -1
+    \progressbar@denom=\inserttotalframenumber
+    \advance\progressbar@denom by -1
+    \progressbar@tmpresult=\progressbar@barlength
+    \multiply\progressbar@tmpresult by \progressbar@numer
+    \divide\progressbar@tmpresult by \progressbar@denom
+    \progressbar@currentbarlength=\progressbar@tmpresult mm
+
+    \begin{tikzpicture}
+
+      \draw (\progressbar@titlerectangle, 0.32cm) node [anchor=south east] {\color{UniRed}\inserttitle};
+      \draw (\progressbar@authorrectangle, 0.28cm) node [anchor=south west] {\color{UniRed}\insertauthor};
+      \fill (\progressbar@leftbar, 0.12cm) [fill=UniSand, rounded corners=0.1cm] rectangle (\progressbar@titlerectangle, 0.3cm); %background of progressbar
+
+      \ifnum\insertframenumber=1\else
+
+      \shade[left color=UniRed, right color=UniRed, rounded corners=0.1cm] (\progressbar@leftbar, 0.12cm) rectangle ++(\progressbar@currentbarlength, 0.18cm);
+
+      \fi
+    \end{tikzpicture}
+  \fi
+}
+
+
+% Definition of the customized templates...
+\mode<presentation>
+
+\newlength\progressbar@sectionboxwidth
+\newlength\progressbar@sectionboxheight
+\newbox\progressbar@sectionbox
+\newbox\progressbar@sectionboxbox
+
+\usesectionheadtemplate
+  {\hfill
+    \setbox\progressbar@sectionbox=\hbox{\insertsectionhead}%
+    \progressbar@sectionboxwidth=\wd\progressbar@sectionbox
+    \advance\progressbar@sectionboxwidth by 4pt
+    \setbox\progressbar@sectionbox=\hbox{\pgfinterruptpicture t \endpgfinterruptpicture}%
+    \progressbar@sectionboxheight=\ht\progressbar@sectionbox
+    \advance\progressbar@sectionboxheight by 4pt
+    \begin{tikzpicture}
+      \useasboundingbox (-0.5\progressbar@sectionboxwidth, 0pt) rectangle (0.5\progressbar@sectionboxwidth, \progressbar@sectionboxheight);
+      \draw[anchor=base] (0pt, 2pt) node {\color{UniRedOutline} \insertsectionhead};
+      \draw[rounded corners=3pt, draw=structure.fg!80!bg] (-0.5\progressbar@sectionboxwidth, 0pt) rectangle (0.5\progressbar@sectionboxwidth, \progressbar@sectionboxheight);
+    \end{tikzpicture}
+  }
+  {\hfill
+    \setbox\progressbar@sectionbox=\hbox{\pgfinterruptpicture\insertsectionhead\endpgfinterruptpicture}%
+    \progressbar@sectionboxwidth=\wd\progressbar@sectionbox
+    \advance\progressbar@sectionboxwidth by 4pt
+    \setbox\progressbar@sectionboxbox=\hbox{\pgfinterruptpicture t \endpgfinterruptpicture}%
+    \progressbar@sectionboxheight=\ht\progressbar@sectionboxbox
+    \advance\progressbar@sectionboxheight by 4pt
+    \begin{tikzpicture}
+      \useasboundingbox (-0.5\progressbar@sectionboxwidth, 0pt) rectangle (0.5\progressbar@sectionboxwidth, \progressbar@sectionboxheight);
+      \draw[anchor=base] (0pt, 2pt) node {\color{UniRed} \insertsectionhead};
+    \end{tikzpicture}
+  }
+
+% headline...
+\defbeamertemplate*{headline}{progressbar theme}
+{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=1.125ex]{section.bg}%
+    \insertsectionnavigationhorizontal{\paperwidth}{}{}%\hskip0pt plus1filll}{}%
+  \end{beamercolorbox}%
+}
+
+% footline...
+\defbeamertemplate*{footline}{progressbar theme}{
+\hspace{0.58cm}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.6cm,dp=1ex]{progressbar secondary}%
+    \insertprogressbar
+  \end{beamercolorbox}%
+}
+
+% background...
+\defbeamertemplate*{background canvas}{progressbar theme}{\color{white}}
+
+\mode
+<all>
+
+\makeatother

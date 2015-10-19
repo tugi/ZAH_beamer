@@ -1,0 +1,84 @@
+\documentclass[mathserif]{beamer}
+\setbeamertemplate{navigation symbols}{}
+
+\mode<presentation>
+{
+\usetheme{ita}
+\setbeamercovered{transparent}
+}
+%\usefonttheme{serif}
+
+\setbeamertemplate{navigation symbols}{}
+\usepackage[british]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{textcomp,latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage{eurosym}
+\usepackage{lscape}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{media9}
+\usepackage{gensymb}
+\usepackage{amsfonts} 
+\usepackage{graphicx}
+\usepackage{ulem}
+
+\usepackage{tikz}
+\setbeamercovered{invisible}
+
+\title{My Talk} 
+\subtitle{with a subtitle}
+\author{{Dr. Acula}}
+\institute{{ZAH, Heidelberg University}}
+\titlegraphic{\includegraphics[width = 0.18 \textwidth]{zah-logo.jpg}}
+
+\date{31 February 2002}
+\input{newcommands.tex}
+\begin{document}
+
+{
+\setbeamertemplate{footline}{}
+\setbeamertemplate{headline}{} 
+\begin{frame}
+  \titlepage
+\end{frame}
+}
+
+\addtocounter{framenumber}{-1}
+\frame{
+\frametitle{Table of contents}
+\tableofcontents
+}
+\section{Introduction}
+\frame{\frametitle{This talk}
+\begin{itemize}
+\item Is using the ITA theme
+\item That's quite good
+\end{itemize}
+}
+\section{The middle bit}
+\frame{\frametitle{Let's talk about}
+\begin{itemize}
+\item Complicated things
+\end{itemize}
+}
+\frame{\frametitle{Shit gets real}
+\begin{exampleblock}{My favourite formula}
+\[
+F = ma
+\]
+\end{exampleblock}
+}
+\section{The end bit}
+\frame{\frametitle{This talk}
+\begin{itemize}
+\item is now finished
+\end{itemize}
+}
+
+
+\end{document}
