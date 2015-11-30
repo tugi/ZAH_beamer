@@ -7,11 +7,20 @@
 \ProvidesPackage{beamerthemezah}
 
 \mode<presentation>
-
+%%%%%%%%%%%%%%
 \usefonttheme{zah}
 \usecolortheme{zah}
-\useinnertheme{circles}
 \useoutertheme{zah}
+
+%\useinnertheme{circles}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{itemize item}{\raisebox{0.12ex}{$\bullet$}\hskip0.1em}
+\setbeamertemplate{itemize subitem}{\raisebox{0.12ex}{$\cdot$}\hskip0.1em}
+
+\setbeamerfont{itemize/enumerate body}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\normalsize}
+%%%%%%%%%%%%%%
 
 \setbeamertemplate{blocks}[rounded]
 

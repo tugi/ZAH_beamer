@@ -78,7 +78,7 @@
     \advance\progressbar@sectionboxheight by 4pt
     \begin{tikzpicture}
       \useasboundingbox (-0.5\progressbar@sectionboxwidth, 0pt) rectangle (0.5\progressbar@sectionboxwidth, \progressbar@sectionboxheight);
-      \draw[anchor=base] (0pt, 2pt) node {\color{UniRedOutline} \insertsectionhead};
+      \draw[anchor=base] (0pt, 2pt) node {\color{UniRed} \insertsectionhead};
       \draw[rounded corners=3pt, draw=structure.fg!80!bg] (-0.5\progressbar@sectionboxwidth, 0pt) rectangle (0.5\progressbar@sectionboxwidth, \progressbar@sectionboxheight);
     \end{tikzpicture}
   }
@@ -91,7 +91,7 @@
     \advance\progressbar@sectionboxheight by 4pt
     \begin{tikzpicture}
       \useasboundingbox (-0.5\progressbar@sectionboxwidth, 0pt) rectangle (0.5\progressbar@sectionboxwidth, \progressbar@sectionboxheight);
-      \draw[anchor=base] (0pt, 2pt) node {\color{UniRed} \insertsectionhead};
+      \draw[anchor=base] (0pt, 2pt) node {\color{UniRedOutline} \insertsectionhead};
     \end{tikzpicture}
   }
 
@@ -99,7 +99,7 @@
 \defbeamertemplate*{headline}{progressbar theme}
 {%
   \leavevmode%
-  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=1.125ex]{section.bg}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=4ex,dp=1.125ex]{UniSand}%
     \insertsectionnavigationhorizontal{\paperwidth}{}{}%\hskip0pt plus1filll}{}%
   \end{beamercolorbox}%
 }
@@ -113,7 +113,7 @@
 }
 
 % background...
-\defbeamertemplate*{background canvas}{progressbar theme}{\color{white}}
+\defbeamertemplate*{background canvas}{progressbar theme}{\color{UniSand}}
 
 \mode
 <all>
